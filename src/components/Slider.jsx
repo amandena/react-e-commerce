@@ -1,5 +1,8 @@
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
+
+import { sliderItems } from '../data'
 
 const Container = styled.div`
   width: 100%;
@@ -31,6 +34,8 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
+  transition: all 1.5s ease;
+  transform: translate(${props => props.slideIndex * -100}vw);
 `
 
 const Slide = styled.div` 
@@ -74,44 +79,37 @@ const Button = styled.button`
 `
 
 const Slider = () => {
+
+  const [slideIndex, setSlideIndex] = useState(0)
+
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)  
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
+    }
+  }
+
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
-      <Wrapper>
-        <Slide bg="f5fafd">
-          <ImgContainer>
-            <Image src="https://vitalcy-images.s3.amazonaws.com/website/home/ladyguyjump.png" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>SUMMER SALE</Title>
-            <Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide bg="f5fafd">
-          <ImgContainer>
-            <Image src="https://variety.com/wp-content/uploads/2022/01/Lady-Gaga-Variety-Actors-on-Actors-3-16x9-1.jpg" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>FALL SALE</Title>
-            <Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide bg="f5fafd">
-          <ImgContainer>
-            <Image src="https://variety.com/wp-content/uploads/2022/01/Lady-Gaga-Variety-Actors-on-Actors-3-16x9-1.jpg" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>WINTER SALE</Title>
-            <Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => 
+          <Slide bg={item.bg} key={item}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Description>{item.desc}</Description>
+              <Button>SHOP NOW</Button>
+            </InfoContainer>
+          </Slide>
+        )}
       </Wrapper>
-      <Arrow direction="right">
+      <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlined />
       </Arrow>
     </Container>
