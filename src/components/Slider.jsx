@@ -6,6 +6,7 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   position: relative;
+  overflow: hidden;
 `
 
 const Arrow = styled.div`
@@ -29,6 +30,7 @@ const Arrow = styled.div`
 
 const Wrapper = styled.div`
   height: 100%;
+  display: flex;
 `
 
 const Slide = styled.div` 
@@ -36,6 +38,7 @@ const Slide = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
+  background-color: #${props => props.bg};
 `
 
 const ImgContainer = styled.div` 
@@ -77,12 +80,32 @@ const Slider = () => {
         <ArrowLeftOutlined />
       </Arrow>
       <Wrapper>
-        <Slide>
+        <Slide bg="f5fafd">
+          <ImgContainer>
+            <Image src="https://vitalcy-images.s3.amazonaws.com/website/home/ladyguyjump.png" />
+          </ImgContainer>
+          <InfoContainer>
+            <Title>SUMMER SALE</Title>
+            <Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
+            <Button>SHOP NOW</Button>
+          </InfoContainer>
+        </Slide>
+        <Slide bg="f5fafd">
           <ImgContainer>
             <Image src="https://variety.com/wp-content/uploads/2022/01/Lady-Gaga-Variety-Actors-on-Actors-3-16x9-1.jpg" />
           </ImgContainer>
           <InfoContainer>
-            <Title>SUMMER SALE</Title>
+            <Title>FALL SALE</Title>
+            <Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
+            <Button>SHOP NOW</Button>
+          </InfoContainer>
+        </Slide>
+        <Slide bg="f5fafd">
+          <ImgContainer>
+            <Image src="https://variety.com/wp-content/uploads/2022/01/Lady-Gaga-Variety-Actors-on-Actors-3-16x9-1.jpg" />
+          </ImgContainer>
+          <InfoContainer>
+            <Title>WINTER SALE</Title>
             <Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
             <Button>SHOP NOW</Button>
           </InfoContainer>
