@@ -29,9 +29,7 @@ const Select = styled.select`
   padding: 10px;
   margin-right: 20px;
 `
-const Option = styled.option`
-  
-`
+const Option = styled.option``
 
 const ProductList = () => {
   return (
