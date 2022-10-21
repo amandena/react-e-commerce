@@ -9,7 +9,8 @@ router.put("/:id", verifyTokenAndAuth, async (req, res) => {
   }
 
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+    const id = new ObjectId(req.params.id)
+    const updatedUser = await User.findByIdAndUpdate(id, {
       $set: req.body 
     }, {new: true})
     res.status(200).json(updatedUser)
