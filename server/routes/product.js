@@ -15,20 +15,16 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 })
 
 // UPDATE
-// router.put("/:id", verifyTokenAndAuth, async (req, res) => {
-//   if(req.body.password) {
-//     req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString()
-//   }
-
-//   try {
-//     const updatedUser = await User.findOneAndUpdate(req.params.id, {
-//       $set: req.body 
-//     }, {new: true})
-//     res.status(200).json(updatedUser)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// })
+router.put("/:id", verifyTokenAndAuth, async (req, res) => {
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(req.params.id, {
+      $set: req.body 
+    }, {new: true})
+    res.status(200).json(updatedProduct)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 // //DELETE
 // router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
