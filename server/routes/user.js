@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const User = require("../models/User")
-const { verifyToken, verifyTokenAndAuth, verifyTokenAndAdmin } = require("./verifyToken")
+const { verifyTokenAndAuth, verifyTokenAndAdmin } = require("./verifyToken")
 
 // UPDATE
 router.put("/:id", verifyTokenAndAuth, async (req, res) => {
