@@ -27,7 +27,7 @@ router.put("/:id", verifyTokenAndAuth, async (req, res) => {
   }
 })
 
-//DELETE
+// DELETE
 router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
   try {
     await Cart.findByIdAndDelete(req.params.id)
@@ -37,15 +37,15 @@ router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
   }
 })
 
-// //GET PRODUCT
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const product = await Product.findById(req.params.id)
-//     res.status(200).json(product)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// })
+// GET PRODUCT
+router.get("/:userId", verifyTokenAndAuth, async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.userId })
+    res.status(200).json(cart)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 // //GET ALL PRODUCTS
 // router.get("/", async (req, res) => {
