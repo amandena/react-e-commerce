@@ -15,17 +15,17 @@ router.post("/", verifyToken, async (req, res) => {
 })
 
 // UPDATE
-// router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const updatedOrder = await Order.findOneAndUpdate(
-//       req.params.id, {
-//       $set: req.body 
-//     }, {new: true})
-//     res.status(200).json(updatedOrder)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// })
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const updatedOrder = await Order.findOneAndUpdate(
+      req.params.id, {
+      $set: req.body 
+    }, {new: true})
+    res.status(200).json(updatedOrder)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 // DELETE
 // router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
