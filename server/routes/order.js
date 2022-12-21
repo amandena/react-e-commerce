@@ -37,15 +37,15 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-// // GET PRODUCT
-// router.get("/:userId", verifyTokenAndAuth, async (req, res) => {
-//   try {
-//     const cart = await Cart.findOne({ userId: req.params.userId })
-//     res.status(200).json(cart)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// })
+// GET USER ORDERS
+router.get("/:userId", verifyTokenAndAuth, async (req, res) => {
+  try {
+    const order = await Order.findOne({ userId: req.params.userId })
+    res.status(200).json(order)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 // //GET ALL 
 // router.get("/", verifyTokenAndAdmin, async (req, res) => {
